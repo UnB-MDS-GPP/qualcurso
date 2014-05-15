@@ -1,9 +1,11 @@
 package unb.mdsgpp.qualcurso;
 
 import android.app.Activity;
+import android.support.v7.app.ActionBar.Tab;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.FragmentManager;
 import android.content.Context;
@@ -15,12 +17,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity implements
-		NavigationDrawerFragment.NavigationDrawerCallbacks, BeanListCallbacks {
+		NavigationDrawerFragment.NavigationDrawerCallbacks, BeanListCallbacks, ActionBar.TabListener {
 
 	/**
 	 * Fragment managing the behaviors, interactions and presentation of the
@@ -33,7 +36,12 @@ public class MainActivity extends ActionBarActivity implements
 	 * {@link #restoreActionBar()}.
 	 */
 	private CharSequence mTitle;
-
+	
+	private ViewPager viewPager;
+    private TabsPagerAdapter mAdapter;
+    private ActionBar actionBar;
+	private String[] tabs = { "Instituição", "Curso" };
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -46,6 +54,21 @@ public class MainActivity extends ActionBarActivity implements
 		// Set up the drawer.
 		mNavigationDrawerFragment.setUp(R.id.navigation_drawer,
 				(DrawerLayout) findViewById(R.id.drawer_layout));
+		
+		viewPager = (ViewPager) findViewById(1);
+        actionBar = getSupportActionBar();
+        mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
+ 
+        viewPager.setAdapter(mAdapter);
+        actionBar.setHomeButtonEnabled(false);
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);        
+ 
+        // Adding Tabs
+        for (String tab_name : tabs) {
+            actionBar.addTab(actionBar.newTab().setText(tab_name)
+                    .setTabListener(this));
+        }
+ 
 	}
 
 	@Override
@@ -157,6 +180,24 @@ public class MainActivity extends ActionBarActivity implements
 						.beginTransaction()
 						.replace(R.id.container,
 								fragment).addToBackStack(null).commit();
+		
+	}
+
+	@Override
+	public void onTabReselected(Tab arg0, FragmentTransaction arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onTabSelected(Tab arg0, FragmentTransaction arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onTabUnselected(Tab arg0, FragmentTransaction arg1) {
+		// TODO Auto-generated method stub
 		
 	}
 
