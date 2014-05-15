@@ -55,7 +55,7 @@ public class MainActivity extends ActionBarActivity implements
 		mNavigationDrawerFragment.setUp(R.id.navigation_drawer,
 				(DrawerLayout) findViewById(R.id.drawer_layout));
 		
-		viewPager = (ViewPager) findViewById(1);
+		viewPager = (ViewPager) findViewById(R.id.pager);
         actionBar = getSupportActionBar();
         mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
  
@@ -68,8 +68,24 @@ public class MainActivity extends ActionBarActivity implements
             actionBar.addTab(actionBar.newTab().setText(tab_name)
                     .setTabListener(this));
         }
+        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        	 
+            @Override
+            public void onPageSelected(int position) {
+                // on changing the page
+                // make respected tab selected
+                actionBar.setSelectedNavigationItem(position);
+            }
  
-	}
+            @Override
+            public void onPageScrolled(int arg0, float arg1, int arg2) {
+            }
+ 
+            @Override
+            public void onPageScrollStateChanged(int arg0) {
+            }
+        });
+    }
 
 	@Override
 	public void onNavigationDrawerItemSelected(int position) {
@@ -192,7 +208,7 @@ public class MainActivity extends ActionBarActivity implements
 	@Override
 	public void onTabSelected(Tab arg0, FragmentTransaction arg1) {
 		// TODO Auto-generated method stub
-		
+		viewPager.setCurrentItem(arg0.getPosition());
 	}
 
 	@Override
