@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    
     android:id="@+id/custom_textview"
-    android:background="@color/gainsboro"
-    android:ems="10"
-    android:fontFamily="@string/title_section1"
     android:layout_width="match_parent"
-            	    android:layout_height="wrap_content"
-            	    android:gravity="left"
-            	    android:padding="10dp"
-            	    android:text="@string/theses"
-            	    android:textColor="@color/black"
-            	    android:textSize="@dimen/list_item_dimension"
-            	    android:layout_marginTop="5dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:ems="10"
+    android:gravity="left"
+    android:padding="10dp"
+    android:textColor="@color/black"
+    android:textSize="@dimen/list_item_dimension"
 />
