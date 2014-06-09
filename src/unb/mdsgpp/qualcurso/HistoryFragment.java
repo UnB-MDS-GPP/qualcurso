@@ -1,5 +1,9 @@
 package unb.mdsgpp.qualcurso;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+
 import models.Course;
 import models.Institution;
 import models.Search;
@@ -44,8 +48,9 @@ public class HistoryFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, 	Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_history, container, false);
 		final ListView history = (ListView) rootView.findViewById(R.id.listHistory) ; 
-
-		ListHistoryAdapter histotyAdapter = new ListHistoryAdapter(this.getActivity().getApplicationContext(), R.id.listHistory, Search.getAll());
+		ArrayList<Search> searches = Search.getAll();
+		Collections.reverse(searches);
+		ListHistoryAdapter histotyAdapter = new ListHistoryAdapter(this.getActivity().getApplicationContext(), R.id.listHistory, searches);
 
 		history.setAdapter((ListAdapter)histotyAdapter);
 		

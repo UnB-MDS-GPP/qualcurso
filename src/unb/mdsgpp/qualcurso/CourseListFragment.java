@@ -65,16 +65,12 @@ public class CourseListFragment extends ListFragment{
 		ListView rootView = (ListView) inflater.inflate(R.layout.fragment_list, container,
 				false);
 		rootView = (ListView) rootView.findViewById(android.R.id.list);
-		try {
 			if(list != null){
 			rootView.setAdapter(new ArrayAdapter<Course>(
 			        getActionBar().getThemedContext(),
 			        R.layout.custom_textview,
 			        list));
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 		return rootView;
 	}
 	
